@@ -23,6 +23,7 @@ pipeline {
         stage('Package') {
             steps {
                 sh './gradlew shadowJar'
+                archiveArtifacts artifacts: 'build/libs/*.jar', fingerprint: true
             }
         }
     }
