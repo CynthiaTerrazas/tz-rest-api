@@ -11,6 +11,14 @@ pipeline {
         stage('Test') {
             steps {
                 sh './gradlew clean check'
+                publishHTML target: [
+                allowMissing: false,
+                alwaysLinkToLastBuild: false,
+                keepAll: true,
+                reportDir: 'build/reports/tests/test/',
+                reportFiles: 'index.html',
+                reportName: 'Jenkins Unit test Reports'
+              ]
             }
         }
         stage('Package') {
